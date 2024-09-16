@@ -1,0 +1,239 @@
+{% extends 'Baseinner.html' %}
+{% block title %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<title>DataExtractor | Home</title>
+{% endblock title %}
+{% block body %}
+  <div class="container text-center my-5">
+
+    <div class="col">
+      <div class="shadow-lg p-3 mb-5 bg-body rounded">
+        <p><b>SELECT TEMPLATE (images/pdfs) </b></p>
+        <form enctype="multipart/form-data" method="post">
+          <div class="input-group">
+            <input id="file" name="file" type="file" multiple class="form-control" accept=".pdf,.jpg,.png,.tiff,.tif,.PDF,.JPEG,.jpeg" />
+<input type="text" placeholder="Enter Template Name Here" name="Temp_name" class="form-control" required>            
+<button type="submit" class="btn btn-dark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                fill="currentColor" class="bi bi-receipt" viewBox="0 0 16 16">
+                <path
+                  d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27zm.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0l-.509-.51z" />
+                <path
+                  d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z" />
+              </svg><b class="mx-2">Proceed &#8594</b></button>
+          </div>
+        </form>
+
+      </div>
+
+      <h5>Or</h5>
+     <br>
+
+ <form method='POST' enctype='multipart/form-data' class="mx-3 shadow-lg p-3 mb-5 bg-body rounded">
+                <div class="card">
+                
+                 
+                    <header>
+                      <p><b>SELECT FOLDER HERE</b></p>
+                    </header>
+                    <p>Files Supported: PDFS/Images</p>
+ <div class="input-group px-md-5">
+                    {{form.hidden_tag()}}
+                    {{form.file(class_="form-control",webkitdirectory="true", id="convertbutton")}}
+                    
+                   
+                   
+
+                    <button type="submit" class="btn btn-dark" onclick="convert()" id="button-convert"><b>Convert &#8594</b></button>
+                   
+                  </div>
+                  <br><br>
+                  <br>
+                </div>
+                
+              
+        </form>
+      <h5 class="container"><b>Saved Templates({{total}})</b></h5><br>
+
+
+
+      {%if Data%}
+      <p class="text-dark" id="basic-addon2"><b>Search Template Name</b></p>
+      <div class="input-group mb-3">
+
+        <input type="text" class="form-control" placeholder="Search template name" aria-label="Recipient's username"
+          aria-describedby="basic-addon2" id="Searchinput" onkeyup="Search()">
+
+      </div>
+    </div>
+
+  </div>
+
+  </div>
+
+  </div>
+
+  <table class="table table-striped container" id="SavedTable">
+    <thead>
+      <tr>
+        <th scope="col">SR NO</th>
+        <th scope="col">Template Name</th>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">Day</th>
+        <th scope="col">Template format</th>
+        <th scope="col">Apply on folder</th>
+        <th scope="col">View</th>
+        <!--<th scope="col">Edit</th>-->
+        <th scope="col">Delete</th>
+        
+
+      </tr>
+      <th id="msg">
+        <div class="alert alert-primary" role="alert">
+          Not Found
+        </div>
+      </th>
+    </thead>
+    <tbody class="imgs">
+
+
+
+
+      {%for d in Data%}
+
+      <tr>
+
+        <th scope="row">{{loop.index}}</th>
+        <td scope="col">{{d.Tem_name}}</td>
+        <td scope="col">{{d.Date}}</td>
+        <td scope="col">{{d.Time}}</td>
+        <td scope="col">{{d.Day}}</td>
+        <td scope="col">{{d.Tem_format}}</td>
+
+
+
+          <div class="popup-imag" style="display: none;">
+            <span>&times;</span>
+            <img src="" alt="Image Preview" />
+        </div>
+        
+        <div class="popup-pdf" style="display: none;">
+            <span>&times;</span>
+            <iframe src="" width="100%" height="500px"></iframe>
+        </div>
+
+        <td><b class="btn btn-dark"><a href="/apply/{{d.cord_id}}?token={{token}}" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+          <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+        </svg></a></b></td>
+        {%if ("Image"==d.Tem_format) %}
+        <td scope="col" value={{d.cord_id}}><span value="data:;base64,{{d.tempimage}}" class="btn btn-dark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+          <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+          <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+        </svg></span> 
+          <!--<img src="data:;base64,{{d.tempimage}}" style="width:200px; height:200px;" frameborder="0">--></td>
+        
+          
+          {%else%}
+        <td scope="col" value={{d.cord_id}}><button value="data:application/pdf;base64,{{d.tempimage}}" class="btn btn-dark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+          <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+          <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+        </svg></button><!--<iframe src="data:application/pdf;base64,{{d.tempimage}}" style="width:200px; height:200px;" frameborder="0"></iframe>--></td>
+
+        {%endif%}
+
+            
+
+        <!--<td><b class="btn btn-dark"><a href="/delete/{{d.cord_id}}?token={{token}}"
+          class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+          </svg></a></b></td>-->
+
+        <td><b class="btn btn-danger"><a href="/delete/{{d.cord_id}}?token={{token}}"
+              class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+              </svg></a></b></td>
+      </tr>
+      {%endfor%}
+
+    </tbody>
+  </table>
+  {% else %}
+
+  <div class="alert alert-danger" role="alert">
+    Templates are not available
+  </div>
+
+
+  {% endif %}
+
+
+
+
+  
+
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasRightLabel">Instructions</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <li><b>Apply on folder</b>: It is use to apply previous template on the new folder.</li>
+      <br>
+      <li><b>Delete</b>: It is use to delete particular template from the table.</li>
+      <br>
+      <li><b>Select Template(images/pdfs)</b>: This section is basically use for the mark new template. you need to
+        select template(image or pdf) from the system and click on the Mark new template button.</li>
+      <br>
+      <li><b>Logout</b>:It is use to logout from the application.</li>
+    </div>
+  </div>
+ <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+<script>
+ document.querySelectorAll(".imgs span").forEach(image => {
+    image.onclick = () => {
+        // Display the image popup and hide the PDF popup
+        document.querySelector('.popup-imag').style.display = "block";
+        document.querySelector('.popup-pdf').style.display = "none";
+
+        // Set the image source from the value attribute
+        const imageSrc = image.getAttribute("value");
+        if (imageSrc) {
+            document.querySelector('.popup-imag img').src = imageSrc;
+        } else {
+            console.error("No image source found for the selected element.");
+        }
+    };
+
+    // Close the image popup when the close (span) button is clicked
+    document.querySelector('.popup-imag span').onclick = () => {
+        document.querySelector('.popup-imag').style.display = "none";
+    };
+});
+
+// Handle PDF preview
+document.querySelectorAll(".imgs button").forEach(pdf => {
+    pdf.onclick = () => {
+        // Display the PDF popup and hide the image popup
+        document.querySelector('.popup-pdf').style.display = "block";
+        document.querySelector('.popup-imag').style.display = "none";
+
+        // Set the iframe source from the value attribute (expecting a base64-encoded PDF)
+        const pdfSrc = pdf.getAttribute("value");
+        if (pdfSrc) {
+            document.querySelector('.popup-pdf iframe').src = pdfSrc;
+        } else {
+            console.error("No PDF source found for the selected element.");
+        }
+    };
+
+    // Close the PDF popup when the close (span) button is clicked
+    document.querySelector('.popup-pdf span').onclick = () => {
+        document.querySelector('.popup-pdf').style.display = "none";
+    };
+});
+
+</script>
+
+  {% endblock body %}

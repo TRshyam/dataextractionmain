@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Registration</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/loginform.css') }}">
+<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='icon/icon.jpg') }}">
+{% endblock title %}
+
+{% block body %}
+    
+
+<div class="content">
+
+    <div class="text">Registration Form</div>
+    <form class="row g-3" method="post">\
+        <div class="col-md-6 field">
+
+            {{ form.Name }}
+        </div><br>
+
+        <div class="col-md-6 field">
+            
+            {{ form.hidden_tag() }}
+            {{ form.username }}
+        </div><br>
+        <div class="col-md-6 field">
+            
+            {{ form.password }}
+        </div><br>
+       
+        <br>
+       
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Sign up</button>
+            <a href="/" type="button" class="btn btn-dark mx-1">Back to login</button>
+          </div>
+        </form>
+</div>
+        
+        {% endblock body %}

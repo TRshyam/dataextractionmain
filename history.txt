@@ -1,0 +1,4 @@
+image,id,name,xMin,xMax,yMin,yMax,Format
+SCAN0015.png.jpg,1,OrderNum,1164,1575,797,874,Character
+SCAN0015.png.jpg,2,Date,1848,2095,950,1010,Date
+SCAN0015.png.jpg,3,Document No,2839,3140,323,406,Character

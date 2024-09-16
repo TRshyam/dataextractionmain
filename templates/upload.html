@@ -1,0 +1,69 @@
+
+ {% extends 'Baseinner.html' %}
+ {% block title %}
+ <link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css') }}">
+ <title>DataExtractor | Upload</title>
+ {% endblock title %}
+ {% block body %}
+  
+
+  <div class="alert alert-success container my-3" role="alert" id="hide">
+    Folder in process...
+  </div>
+        <div class="container2">
+          
+               <form method='POST' enctype='multipart/form-data' class="mx-3">
+                <div class="card">
+                  <h3>Upload Folder</h3>
+                  <div class="drop_box mx-3">
+                    <header>
+                      <h4>Select Folder here</h4>
+                    </header>
+                    <p>Files Supported: PDFS/Images</p>
+                    {{form.hidden_tag()}}
+                    {{form.file(class_="form-control",webkitdirectory="true", id="convertbutton")}}
+                    
+                   
+                    <br>
+                    <label>Choose option</label>
+                    <select name="option" id="selectoption" class="form-select my-3 md-2">
+                      
+                      <option value="1"> without cloud vision</option>
+                      <option value="2">cloud vision</option>
+                    </select>
+                    
+                    <!--<input type="file" class="form-control" placeholder="put jsonfile" id="jsonfile" name="jsonfile">-->
+                    {{form.jsonfile(class_="form-control", id="jsonfile", accept="application/JSON",onchange="filestatus()")}}
+                    <p id="note"></p>
+
+                    <button type="submit" class="btn btn-dark" onclick="convert()" id="button-convert">Convert</button>
+                   
+                  </div>
+                  <br><br>
+                  <br>
+                </div>
+                
+              
+        </form>
+
+
+
+        
+    </div>
+    
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+      <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel">Instructions</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <li>You need to upload a folder from the system and select option from the option list.
+        If you select Without Cloud Vision you can extract data directly but it's not extract handwritten data properly. 
+        If you select With Cloud vision so you can extract handwritten data and normal data from the pdfs/images but you need to upload json file of cloud vision.</li>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+
+    {% endblock body %}
+ 

@@ -1,0 +1,30 @@
+{% extends 'Baseinner.html' %}
+{% block title %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+<title>Profile | {{data.Name}}</title>
+{% endblock title %}
+{% block body %}
+
+
+<div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+    <div class="card p-4">
+        <center><h3><b>Profile</b></h3></center>
+        <div class=" image d-flex flex-column justify-content-center align-items-center">
+            <button class="btn btn-secondary"> <img src="{{ url_for('static', filename='icon/download.png') }}" height="100" width="100" />
+            </button> <span class="name mt-3">{{data.Name}}</span> <span class="idd">@{{data.Name}}</span>
+            <div class="d-flex flex-row justify-content-center align-items-center gap-2"> <span
+                    class="idd1">{{data.username}}</span> <span><i class="fa fa-copy"></i></span> </div>
+            <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span class="number">{{total}} <span
+                        class="follow">Saved Template</span></span> </div>
+            <div class=" d-flex mt-2">  <b class="btn btn-dark mx-2"><a href="/logout?token={{token}}" class="nav-link">Logout</a></b> </div>
+            <div class="text  mt-3"> <span class="text-justify">Hey {{data.Name}}, You are welcome in Data Extracter App, Hope you are enjoying this app. If you find any difficulty contact us to <a href="#">abcd@gmail.com</a>| +2252592102</span> </div>
+            <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center"> <span><i
+                        class="fa fa-twitter"></i></span> <span><i class="fa fa-facebook-f"></i></span> <span><i
+                        class="fa fa-instagram"></i></span> <span><i class="fa fa-linkedin"></i></span> </div>
+            <div class=" px-2 rounded mt-4 date "> <span class="join">Joined {{data.Date_time}}</span> </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock body %}

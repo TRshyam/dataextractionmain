@@ -1,0 +1,60 @@
+<!doctype html>
+<html style="height:100%;">
+<head>
+    <title>Druidotindia | Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">DruidotIndia</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/dashboard?token={{token}}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#about">About</a>
+              </li>
+              
+              
+            </ul>
+            <form class="d-flex">
+             
+              
+              <li class="me-5">
+                <b class="btn btn-dark" >{{current_user.username}}</b>
+                <b class="btn btn-danger" >Logout</b>
+                
+                
+              </li>
+            </form>
+          </div>
+        </div>
+      </nav>
+    <div class="container">
+        <center>
+        <div class="jumbotron shadow my-5" style="margin-top:20px; height:300px; width:500px" >
+            <h1 style="margin:-20px 0 40px 0;">Invoice Extractor</h1>
+            <p><b>Select Template(images/pdfs)</b></p>
+            <form enctype="multipart/form-data" method="post">
+                <label class="btn btn-default">
+                    <input id="file" name="file" type="file" multiple class="form-control"/>
+                </label>
+                <br>
+                <button type="submit" class="btn btn-dark" style="margin-top:30px;">Submit</button>
+            </form>
+        </div>
+        </center>
+    </div>
+    <script>
+        var folder = document.getElementById("folder");
+        console.log(folder.value)
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Login</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/loginform.css') }}">
+<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='icon/icon.jpg') }}">
+{% endblock title %}
+{% block body %}
+    
+
+    <div class="content">
+      <div class="text">Login Form</div>
+      <form method="post">
+        <div class="field">
+          <span class="fas fa-user"></span>
+          {{ form.hidden_tag() }}
+          {{ form.username }}
+          
+        </div>
+        <div class="field">
+          <span class="fas fa-lock"></span>
+          {{ form.password }}
+         
+        </div>
+        <br>
+        <button>Sign in</button>
+        <div class="signup">Not a member?
+          <a href="/register">signup now</a>
+        </div>
+      </form>
+  </div>
+  {% endblock body %}
